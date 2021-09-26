@@ -17,9 +17,15 @@ const App = () => (
       </li>
     </ul>
     <Switch>
-      <Route exact path="/" component={HomePage} />
-      <Route path="/movies/:movieId" component={MovieDetailsPage} />
-      <Route path="/movies" component={MoviesPage} />
+      <Route exact path="/">
+        <HomePage />
+      </Route>
+      <Route path="/movies/:movieId">
+        <MovieDetailsPage />
+      </Route>
+      <Route path="/movies">
+        <MoviesPage />
+      </Route>
 
       <Route component={NotFound} />
     </Switch>

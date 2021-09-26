@@ -1,58 +1,50 @@
-// import { useState, useEffect } from 'react';
-// import { useParams } from 'react-router';
-// import { getMovieDeteilsPage } from '../../services/api';
-// import MovieInfoCard from './MovieInfo';
+import { useState, useEffect } from 'react';
+import { useParams, Switch } from 'react-router';
+import { NavLink } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import { getMovieDeteilsPage } from '../../services/api';
+import MovieInfoCard from './MovieInfoCard';
+import  Cast  from '../MovieDetailsPage/Cast';
 
-// function MovieDetailsPage() {
-//     const [movie, setMovie] = useState(null);
-//     const { id } = useParams;
-//     useEffect(() => {
-//         getMovieDeteilsPage(id).then(setMovie)
-
-//      }, [id])
-//     return (
-//         <div>
-//             {movie && <MovieInfoCard movie={movie}/>}
-//         </div>
-// )
-//  }
-
-// export default MovieDetailsPage;
-
-
-
-
-
-import React, { Component } from 'react';
-import axios from 'axios';
-
-class MovieDetailsPage extends Component {
-    state = {
-        book: null,
-        // poster_path: null,
-        // title: null,
-        // genres: null,
-        // id: null,
-        // popularity: null,
-
-    };
-    async componentDidMount() {
-        const response = await axios.get(
-            `https://api.themoviedb.org/3/movie/${this.props.match.params.movieId}?api_key=a97a44bb2f674ee3272cc719c5c287d9&language=en-US`);
-        console.log(response.data)
-        this.setState({book: response.data})
-    }
-    render() {
-        return <>
-        <h1>Страница одной книги {this.props.match.params.movieId} </h1>
-            <img src={`https://image.tmdb.org/t/p/original${this.state.poster_path}`} alt="" />
-            <h2>{this.state.title}</h2>
-            <p>{ this.state.genres}</p>
-           
+function MovieDetailsPage() {
+    const {movieId} = useParams();
+    const [movie, setMovie] = useState(null);
+    // const [actors, setActors] = useEffect;
+    
+    useEffect(() => {
+        getMovieDeteilsPage(movieId)
+        .then(setMovie)
+    }, [movieId])
+    
+    return (
+        <>
+        <MovieInfoCard movie={movie} />
+           <ul>
+                <li>
+                  <NavLink to="/movies/:movieId/cast">
+                    Show Cast
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/movies/:movieId/reviews">
+                    Show Reviews
+                  </NavLink>
+                </li>
+              </ul>
+                <Switch>
+                  <Route path="/movies/:movieId/cast">
+                    <Cast movieId={movieId}></Cast>
+                  </Route>
+                  {/* <Route path="/movies/:movieId/reviews">
+                    <Reviews movieId={movieId}></Reviews>
+                  </Route> */}
+                </Switch>
         </>
-    
-    }
-    
-}
+    )
+ }
 
 export default MovieDetailsPage;
+
+
+
+

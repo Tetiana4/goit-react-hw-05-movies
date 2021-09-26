@@ -23,3 +23,11 @@ export async function getMovieDeteilsPage(movieId) {
   );
   return data;
 }
+
+export async function getActorsById(movieId) {
+  const { data } = await axios.get(
+    `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=a97a44bb2f674ee3272cc719c5c287d9&language=en-US`,
+  );
+  console.log(data.cast);
+  return data.cast;
+}
