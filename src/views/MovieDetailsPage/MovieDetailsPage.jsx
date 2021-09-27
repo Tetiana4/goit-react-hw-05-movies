@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Switch } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import { Route } from 'react-router-dom';
-import { getMovieDeteilsPage } from '../../services/api';
+import { getMovieDetailsPage } from '../../services/api';
 import MovieInfoCard from './MovieInfoCard';
 import  Cast  from '../MovieDetailsPage/Cast';
 
@@ -12,7 +12,7 @@ function MovieDetailsPage() {
     // const [actors, setActors] = useEffect;
     
     useEffect(() => {
-        getMovieDeteilsPage(movieId)
+        getMovieDetailsPage(movieId)
         .then(setMovie)
     }, [movieId])
     
