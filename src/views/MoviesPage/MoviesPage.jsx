@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useHistory } from "react-router-dom";
-// import { Searchbar } from './SearchBar';
 import toast, { Toaster } from 'react-hot-toast';
 import { getMoviesByName } from '../../services/api';
 import SearchList from './SearchList';
-// import { Route } from 'react-router-dom';
-// import Cast from '../../components/MovieDetailsPage/Cast';
+
 
 const MoviesPage = () => {
+  
     const [value, setValue] = useState(null);
   const [movies, setMovies] = useState([]);
 
@@ -40,7 +39,7 @@ const MoviesPage = () => {
     
     return (
         <>
-             <form onSubmit={handleFormSubmit}>
+        <form onSubmit={handleFormSubmit}>
         <input
           placeholder="type to search movies..."
           name="searchValue"
@@ -50,7 +49,7 @@ const MoviesPage = () => {
         <button type="submit">
         </button>
       </form>
-            {/* <Searchbar onSearch={handleFormSubmit} /> */}
+
             {MoviesPage && <SearchList movies={movies} />}
       <Toaster />
        </>
