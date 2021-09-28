@@ -5,7 +5,7 @@ import React from 'react';
 const MoviesPage = () => {
     return (
     <>
-            <h1>Movies</h1>
+            {/* <h1>Movies</h1> */}
             {/* <Route path="/movies/:movieId/cast" component={Cast}/>
             <Route path="/movies/:movieId/reviews"/> */}
         </>

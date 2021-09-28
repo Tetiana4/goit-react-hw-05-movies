@@ -2,12 +2,11 @@ import { useState, useEffect } from 'react';
 import { useParams, Switch } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import { Route } from 'react-router-dom';
-import Loader from 'react-loader-spinner';
-
+import { Spinner } from '../../helpers/Loader';
 import { getMovieDetailsPage, getActorsById, getReviewsById} from '../../services/api';
-import MovieInfoCard from './MovieInfoCard';
-import Cast from './Cast';
-import Reviews from './Reviews';
+import MovieInfoCard from '../MovieInfoCard/MovieInfoCard';
+import Cast from '../Cast/Cast';
+import Reviews from '../Reviews/Reviews';
 
 function MovieDetailsPage() {
   const { movieId } = useParams();
@@ -34,15 +33,7 @@ function MovieDetailsPage() {
     
     return (
       <>
-        {status === 'pending' && (
-        <Loader
-          type="Bars"
-          color="rgb(56, 56, 56)"
-          height={50}
-          width={50}
-          timeout={300}
-        />
-      )}
+        {status === 'pending' && <Spinner />}
         <MovieInfoCard movie={movie}/>
            <ul>
                 <li>
@@ -61,11 +52,7 @@ function MovieDetailsPage() {
                      {casts &&<Cast casts={casts} ></Cast>} 
                   </Route>
                   <Route path="/movies/:movieId/reviews">
-                      {reviews.length === 0 ? (
-            <p>We don't have any reviews for this movie</p>
-          ) : (
-            <Reviews reviews={reviews} />
-          )}
+                      {reviews.length !== 0 && <Reviews reviews={reviews}/>}
                   </Route>
                 </Switch>
         

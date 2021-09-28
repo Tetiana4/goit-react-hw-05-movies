@@ -1,21 +1,15 @@
 import './App.css';
 import React from 'react';
-import { Route, NavLink, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import HomePage from './views/HomePage/HomePage';
 import MoviesPage from './views/MoviesPage/MoviesPage';
-import MovieDetailsPage from './views/MovieDetailsPage/MovieDetailsPage';
-import NotFound from './views/NotFound';
+import MovieDetailsPage from './components/MovieDetailsPage/MovieDetailsPage';
+import NotFound from './helpers/NotFound';
+import Navigation from './components/Navigation/Navigation';
 
 const App = () => (
   <>
-    <ul>
-      <li>
-        <NavLink to="/">Home</NavLink>
-      </li>
-      <li>
-        <NavLink to="/movies">Movies</NavLink>
-      </li>
-    </ul>
+    <Navigation />
     <Switch>
       <Route exact path="/">
         <HomePage />
