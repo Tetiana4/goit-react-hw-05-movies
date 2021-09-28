@@ -13,11 +13,12 @@ export async function getMovieDetailsPage(movieId) {
   return data;
 }
 
-export async function getActorsById(movieId) {
+export async function getActorsById(moviId) {
   const { data } = await axios.get(
-    `/movie/${movieId}/credits?api_key=${KEY}&language=en-US`,
+    `/movie/${moviId}/credits?api_key=${KEY}&language=en-US`,
   );
   console.log(data.cast);
+
   return data.cast;
 }
 

@@ -3,13 +3,14 @@ import { useParams, Switch } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
-import { getMovieDetailsPage } from '../../services/api';
+import { getMovieDetailsPage} from '../../services/api';
 import MovieInfoCard from './MovieInfoCard';
 import Cast from './Cast';
 // import Reviews from './Reviews';
 
 function MovieDetailsPage() {
-    const {movieId} = useParams();
+  const { movieId } = useParams();
+  // const [actors, setActors] = useState([]);
   const [movie, setMovie] = useState(null);
   const [status, setStatus] = useState('idle');
     // const [actors, setActors] = useEffect;
@@ -20,6 +21,7 @@ function MovieDetailsPage() {
         .then(setMovie)
       .catch((e) => console.log(e))
       .finally(() => setStatus('resolved'));
+    
     }, [movieId])
     
     return (
@@ -48,7 +50,7 @@ function MovieDetailsPage() {
               </ul>
                 <Switch>
                   <Route path="/movies/:movieId/cast">
-                    <Cast movieId={movieId} ></Cast>
+                      <Cast movieId={movieId} ></Cast>
                   </Route>
                   {/* <Route path="/movies/:movieId/reviews">
                     <Reviews movieId={movieId}></Reviews>
