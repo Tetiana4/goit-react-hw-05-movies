@@ -1,37 +1,10 @@
-import { useState, useEffect } from 'react';
-import { getActorsById } from '../../services/api';
-import Loader from 'react-loader-spinner';
+import React from 'react';
 
-
-function Cast({ movieId }) {
-  const [actors, setActors] = useState([]);
-  const [status, setStatus] = useState('idle');
-
-  useEffect(() => {
-    setStatus('pending');
-
-    getActorsById(movieId)
-      .then(setActors)
-      .catch((e) => console.log(e))
-      .finally(() => setStatus('resolved'));
-  }, [movieId]);
-
+function Cast({ casts }) {
 
   return (
     <>
-      {status === 'pending' && (
-        <Loader
-          type="Bars"
-          color="rgb(56, 56, 56)"
-          height={50}
-          width={50}
-          timeout={300}
-        />
-      )}
-
-      {status === 'resolved' && (
-        <ul>
-          {actors.map(actor => (
+          {casts.map(actor => (
             <li key={actor.id}>
               <img src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`} alt={actor.name} width="240px" />
               <p>
@@ -43,9 +16,7 @@ function Cast({ movieId }) {
                 {actor.character}
               </p>
             </li>
-          ))}
-        </ul>
-      )}
+          ))}      
     </>
   );
 }

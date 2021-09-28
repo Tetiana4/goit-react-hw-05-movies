@@ -3,26 +3,34 @@ import { useParams, Switch } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
-import { getMovieDetailsPage} from '../../services/api';
+
+import { getMovieDetailsPage, getActorsById, getReviewsById} from '../../services/api';
 import MovieInfoCard from './MovieInfoCard';
 import Cast from './Cast';
-// import Reviews from './Reviews';
+import Reviews from './Reviews';
 
 function MovieDetailsPage() {
   const { movieId } = useParams();
-  // const [actors, setActors] = useState([]);
+  const [casts, setCasts] = useState([]);
   const [movie, setMovie] = useState(null);
   const [status, setStatus] = useState('idle');
-    // const [actors, setActors] = useEffect;
+  const [reviews, setReviews] = useState([]);
+  
     
   useEffect(() => {
-       setStatus('pending');
-        getMovieDetailsPage(movieId)
-        .then(setMovie)
+    setStatus('pending');
+    getMovieDetailsPage(movieId)
+      .then(setMovie)
       .catch((e) => console.log(e))
-      .finally(() => setStatus('resolved'));
     
-    }, [movieId])
+    getActorsById(movieId)
+      .then(setCasts)
+      .catch((e) => console.log(e))
+    
+    getReviewsById(movieId)
+      .then(setReviews)
+      .catch((e) => console.log(e))
+  }, [movieId]);
     
     return (
       <>
@@ -50,11 +58,15 @@ function MovieDetailsPage() {
               </ul>
                 <Switch>
                   <Route path="/movies/:movieId/cast">
-                      <Cast movieId={movieId} ></Cast>
+                     {casts &&<Cast casts={casts} ></Cast>} 
                   </Route>
-                  {/* <Route path="/movies/:movieId/reviews">
-                    <Reviews movieId={movieId}></Reviews>
-                  </Route> */}
+                  <Route path="/movies/:movieId/reviews">
+                      {reviews.length === 0 ? (
+            <p>We don't have any reviews for this movie</p>
+          ) : (
+            <Reviews reviews={reviews} />
+          )}
+                  </Route>
                 </Switch>
         
         </>
