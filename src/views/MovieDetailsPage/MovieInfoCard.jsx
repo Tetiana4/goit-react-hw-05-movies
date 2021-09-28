@@ -1,11 +1,7 @@
 import React from 'react';
-// import { Route } from 'react-router-dom';
-// import { Switch, useParams } from 'react-router';
-// import Cast from './Cast'
-// import { NavLink } from 'react-router-dom';
 
 function MovieInfoCard({ movie }) {
-    // const { movieId } = useParams;
+
     return (
 <>
             {movie &&
@@ -15,12 +11,7 @@ function MovieInfoCard({ movie }) {
                 <p>{movie.overview}</p>
                 <p>Popularity: {movie.popularity}</p>
                 <p>Vote average: {movie.vote_average}</p>
-                </>}
-            {/* <NavLink to="/movies/:movieId/cast">Cast</NavLink>
-            <NavLink to="/movies/:movieId/reviews">Reviews</NavLink> */}
-          {/* <Route path="/movies/:movieId/cast"><Cast/></Route>
-            <Route path="/movies/:movieId/reviews"></Route> */}
-           
+                </>}          
 </>
     )
 }
