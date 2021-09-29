@@ -1,27 +1,29 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { Gallery, Image, LinkStyle} from "./SearchList.styled";
 
 function SearchList({ movies }) {
   const location = useLocation();
 
   return (
-    <ul>
+    <Gallery>
       {movies &&
         movies.map((movie) => (
-          <Link
+          <LinkStyle
             key={movie.id}
             to={{
               pathname: `/movies/${movie.id}`,
               state: { from: location },
             }}
           >
-            <img
+            <Image
               src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
-              alt=""
+              alt="Poster"
             />
-          </Link>
+           
+          </LinkStyle>
         ))}
-    </ul>
+    </Gallery>
   );
 }
 

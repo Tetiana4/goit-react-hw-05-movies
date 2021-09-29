@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import {Link} from 'react-router-dom'
+// import {Link} from 'react-router-dom'
 import { getTrendMovies } from '../../services/api';
+import { Container, List, LinkStyle} from './HomePage.styled';
 
-
-export default function HomePage () {
+export default function HomePage() {
     const [movies, setMovies] = useState([]);
 
     useEffect(() => {
@@ -12,15 +12,14 @@ export default function HomePage () {
     }, []);
    
     return (
-            <>
-            <h1> Home</h1 >
-            <ul>
+            <Container>
+            <List>
                 {movies.map
                     (movie =>
-                        <li key={movie.id}><Link to={`/movies/${movie.id}`}>{movie.title}</Link></li>
+                        <li key={movie.id}><LinkStyle to={`/movies/${movie.id}`}>{movie.title}</LinkStyle></li>
                     )}
-            </ul>
-            </>
+            </List>
+            </Container>
         )
     
 }

@@ -3,13 +3,15 @@ import { useLocation, useHistory } from "react-router-dom";
 import toast, { Toaster } from 'react-hot-toast';
 import { getMoviesByName } from '../../services/api';
 import SearchList from './SearchList';
+import SearchBar from './SearchBar';
+import { Spinner } from '../../helpers/Loader';
 
 
-const MoviesPage = () => {
-  
-    const [value, setValue] = useState(null);
+const MoviesPage = () => { 
+  const [value, setValue] = useState(null);
   const [movies, setMovies] = useState([]);
-
+  const [status, setStatus] = useState('idle');
+  
   const location = useLocation();
   const history = useHistory();
 
@@ -20,37 +22,30 @@ const MoviesPage = () => {
 
   useEffect(() => {
     if (!value) return;
-    getMoviesByName(value).then((movies) => {
+    getMoviesByName(value)
+    .then((movies) => {
       if (movies.length === 0) toast.error("Please type correct movie name");
       setMovies(movies);
+      setStatus('resolved')
     });
-  }, [value]);
+  }, [value, setStatus]);
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    const query = e.target.elements.searchValue.value;
+
+  
+  const onSubmit = query => {
     history.push({
       ...location,
       search: `query=${query}`,
     });
-    setValue(query);
+    setValue(value);
     };
     
     
-    return (
-        <>
-        <form onSubmit={handleFormSubmit}>
-        <input
-          placeholder="type to search movies..."
-          name="searchValue"
-          type="text"
-          autoComplete="off"
-        ></input>
-        <button type="submit">
-        </button>
-      </form>
-
-            {MoviesPage && <SearchList movies={movies} />}
+  return (
+    <>
+          {status === 'pending' && <Spinner/>}
+            <SearchBar onSubmit={onSubmit} />
+          {value && <SearchList movies={movies} />}
       <Toaster />
        </>
     )

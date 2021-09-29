@@ -1,8 +1,9 @@
 import React from "react";
+import {List}from './Reviews.styled'
 
 function Reviews ({ reviews }) {
   return (
-    <>
+    <List>
       {reviews.map((review) => (
         <li key={review.id}>
               <p>
@@ -11,9 +12,9 @@ function Reviews ({ reviews }) {
               <p>
                 {review.content}
               </p>
-            </li>
+        </li>
       ))}
-    </>
+    </List>
   );
 }
 

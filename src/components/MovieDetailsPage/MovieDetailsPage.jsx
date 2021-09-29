@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useParams, Switch } from 'react-router';
-import { NavLink } from 'react-router-dom';
+
 import { Route } from 'react-router-dom';
 import { Spinner } from '../../helpers/Loader';
 import { getMovieDetailsPage, getActorsById, getReviewsById} from '../../services/api';
 import MovieInfoCard from '../MovieInfoCard/MovieInfoCard';
 import Cast from '../Cast/Cast';
 import Reviews from '../Reviews/Reviews';
+import {List, Item, NavLinkStyle} from './MoviedetailsPage.styled'
 
 function MovieDetailsPage() {
   const { movieId } = useParams();
@@ -34,19 +35,19 @@ function MovieDetailsPage() {
     return (
       <>
         {status === 'pending' && <Spinner />}
-        <MovieInfoCard movie={movie}/>
-           <ul>
-                <li>
-                  <NavLink to="/movies/:movieId/cast">
+        {movie && <MovieInfoCard movie={movie}/>}
+           <List>
+                <Item>
+                  <NavLinkStyle to="/movies/:movieId/cast">
                     Show Cast
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/movies/:movieId/reviews">
+                  </NavLinkStyle>
+                </Item>
+                <Item>
+                  <NavLinkStyle to="/movies/:movieId/reviews">
                     Show Reviews
-                  </NavLink>
-                </li>
-              </ul>
+                  </NavLinkStyle>
+                </Item>
+              </List>
                 <Switch>
                   <Route path="/movies/:movieId/cast">
                      {casts &&<Cast casts={casts} ></Cast>} 

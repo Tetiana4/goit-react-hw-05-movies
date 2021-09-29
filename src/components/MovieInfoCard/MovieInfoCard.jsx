@@ -1,18 +1,23 @@
 import React from 'react';
+import { Card, Discr, Span, List } from './MovieInfoCard.styled'
 
 function MovieInfoCard({ movie }) {
-
     return (
-<>
-            {movie &&
-                <>               
-                <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="your poster" width="200px"></img>
-                <h2>{movie.title}</h2>
+        <Card>
+            <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="your poster" width="200px"></img>
+            <Discr>
                 <p>{movie.overview}</p>
-                <p>Popularity: {movie.popularity}</p>
-                <p>Vote average: {movie.vote_average}</p>
-                </>}          
-</>
+                <p>popularity <Span>{movie.popularity}</Span></p>
+                <p>vote average <Span>{movie.vote_average}</Span></p>
+                {movie.genres && (
+                    <List>
+                        {movie.genres.map(ganre => (
+                            <li key={ganre.id}>{ganre.name}</li>
+                        ))}
+                    </List>
+                )}
+            </Discr>
+        </Card>
     )
 }
 
