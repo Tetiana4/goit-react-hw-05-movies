@@ -1,7 +1,7 @@
 import React from "react";
 import {List}from './Reviews.styled'
 
-function Reviews ({ reviews }) {
+export default function Reviews ({ reviews }) {
   return (
     <List>
       {reviews.map((review) => (
@@ -17,5 +17,3 @@ function Reviews ({ reviews }) {
     </List>
   );
 }
-
-export default Reviews;
