@@ -17,7 +17,6 @@ export async function getActorsById(movieId) {
   const { data } = await axios.get(
     `/movie/${movieId}/credits?api_key=${KEY}&language=en-US`,
   );
-
   return data.cast;
 }
 
@@ -25,13 +24,12 @@ export async function getMoviesByName(query) {
   const { data } = await axios.get(
     `/search/movie?query=${query}&api_key=${KEY}&language=en-US&page=1&include_adult=false`,
   );
-  console.log(data);
   return data.results;
 }
+
 export async function getReviewsById(movieId) {
   const { data } = await axios.get(
     `/movie/${movieId}/reviews?api_key=${KEY}&language=en-US`,
   );
-
   return data.results;
 }

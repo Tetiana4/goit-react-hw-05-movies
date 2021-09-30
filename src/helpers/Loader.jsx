@@ -6,7 +6,7 @@ export const Spinner = () => {
     <Loaderbtn>
       <Loader
         type="Bar"
-        color="#4a0e4e"
+        color="#ea2128"
         height={90}
         width={90}
         timeout={300}
