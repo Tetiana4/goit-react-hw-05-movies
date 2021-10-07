@@ -3,12 +3,11 @@ import { Card, Discr, Span, List} from './MovieInfoCard.styled'
 
 export default function MovieInfoCard({ movie }) {
     
-
     return (
         <>
            
             <Card>
-                <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="your poster" width="200px"></img>
+                <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="your poster" width="200px"/>
              
                 <Discr>
                     <p>{movie.overview}</p>
@@ -16,8 +15,8 @@ export default function MovieInfoCard({ movie }) {
                     <p>vote average <Span>{movie.vote_average}</Span></p>
                     {movie.genres && (
                         <List>
-                            {movie.genres.map(ganre => (
-                                <li key={ganre.id}>{ganre.name}</li>
+                            {movie.genres.map(genre => (
+                                <li key={genre.id}>{genre.name}</li>
                             ))}
                         </List>
                     )}

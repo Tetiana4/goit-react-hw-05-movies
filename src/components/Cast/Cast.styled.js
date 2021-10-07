@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 
 export const Container = styled.ul`
   margin: 0 -10px;
-  padding: 20px;
 
   display: flex;
   flex-wrap: wrap;

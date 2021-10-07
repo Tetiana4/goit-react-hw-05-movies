@@ -2,8 +2,6 @@ import { NavLink } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 export const List = styled.ul`
-  margin: 0;
-
   display: flex;
 
   list-style: none;
@@ -11,7 +9,12 @@ export const List = styled.ul`
 
 export const NavLinkStyle = styled(NavLink)`
   margin: 0;
-
+  padding: 10px;
+  display: flex;
+  width: 120px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
   color: black;
   text-transform: uppercase;
   text-decoration: none;
@@ -19,17 +22,9 @@ export const NavLinkStyle = styled(NavLink)`
 
 export const Item = styled.li`
   margin-left: 10px;
-  padding: 10px;
-
-  width: 120px;
-  height: 50px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   background-color: #ea2128;
 `;
+
 export const Button = styled.button`
   margin: 10px 50px 0;
   width: 50px;
@@ -37,4 +32,8 @@ export const Button = styled.button`
   cursor: pointer;
   border-radius: 10px;
   background-color: red;
+`;
+export const Span = styled.span`
+  padding-left: 50px;
+  margin-top: 20px;
 `;

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLocation, useHistory } from "react-router-dom";
 import toast, { Toaster } from 'react-hot-toast';
 import { getMoviesByName } from '../services/api';
-import SearchList from '../components/SearchBar/SearchList';
+import SearchList from '../components/SearchList/SearchList';
 import SearchBar from '../components/SearchBar/SearchBar';
 import { Spinner } from '../helpers/Loader';
 

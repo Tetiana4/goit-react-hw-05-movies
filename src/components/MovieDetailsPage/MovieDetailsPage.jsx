@@ -5,7 +5,7 @@ import { FiChevronLeft } from "react-icons/fi";
 import { getMovieDetailsPage, getActorsById, getReviewsById} from '../../services/api';
 import MovieInfoCard from '../MovieInfoCard/MovieInfoCard';
 import { Spinner } from '../../helpers/Loader';
-import { List, Item, NavLinkStyle, Button } from './MoviedetailsPage.styled'
+import { List, Item, NavLinkStyle, Button, Span } from './MoviedetailsPage.styled'
 
 const Cast = lazy (()=> import('../Cast/Cast' /*webpackChunkName: "Cast"*/));
 const Reviews = lazy (()=>import('../Reviews/Reviews'  /*webpackChunkName: "Reviews"*/));
@@ -74,10 +74,15 @@ function MovieDetailsPage() {
       <Suspense fallback={<Spinner />}>
         <Switch>
           <Route path="/movies/:movieId/cast">
-            {casts && <Cast casts={casts} ></Cast>}
+            {casts && <Cast casts={casts}/>}
           </Route>
           <Route path="/movies/:movieId/reviews">
-            {reviews.length !== 0 && <Reviews reviews={reviews} />}
+            {reviews.length !== 0 ?
+              (
+                <Reviews reviews={reviews} />
+              ) : (
+                <Span>We don't have any reviews</Span>
+              )}
           </Route>
         </Switch>
       </Suspense>
